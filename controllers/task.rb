@@ -11,6 +11,7 @@ class TaskController < ApplicationController
 
   #create
   get '/create' do
+
     # return view
     erb :create
   end
@@ -56,12 +57,17 @@ class TaskController < ApplicationController
 
   #destroy
   get '/destroy/:id' do
+    # 5. We should be getting params[:id]
+    # here. Let's find our model and return it.
+    # Since we know the `id` of the model, we
+    # should have no problem finding it?
+    # We need it for our view.
+
     # return view
-    @message = 'You task was updated!'
-    erb :read
+    erb :destroy
   end
   post '/destroy' do
-    # 5. We should be getting params[:id]
+    # 6. We should be getting params[:id]
     # here. Let's find our model and return it.
     # Since we know the `id` of the model, we
     # should have no problem finding it?

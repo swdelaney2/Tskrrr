@@ -9,7 +9,7 @@
 <table>
   <thead>
     <th>
-      ID
+      Id
     </th>
     <th>
       Name
@@ -20,10 +20,13 @@
     <th>
       Update?
     </th>
+    <th>
+      Destroy?
+    </th>
   </thead>
 
   <tbody>
-    <% @tasks.each do |item| %>
+    <% @tasks.each do |task| %>
       <tr>
         <td>
           <%= task.id %>
@@ -36,6 +39,9 @@
         </td>
         <td>
           <a href='/update/<%= task.id %>'>Update</a>
+        </td>
+        <td>
+          <a href='/destroy/<%= task.id %>'>Destroy</a>
         </td>
       </tr>
     <% end %>

@@ -26,7 +26,7 @@ class TaskController < ApplicationController
 
     # return view
     @message = 'You task was added!'
-    erb :read
+    erb :message
   end
 
   #update
@@ -51,7 +51,7 @@ class TaskController < ApplicationController
 
     # return view
     @message = 'You task was updated!'
-    erb :read
+    erb :message
   end
 
   #destroy
@@ -70,7 +70,7 @@ class TaskController < ApplicationController
 
     # return view
     @message = 'You task was destroyed! BUAHAHAHA'
-    erb :read
+    erb :message
   end
 
 

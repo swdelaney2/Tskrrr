@@ -2,6 +2,9 @@ class TaskController < ApplicationController
 
   #read (list)
   get '/' do
+@tasks = Task.all
+# @tasksName = Task.name
+# @tasksDescription = Task.description
     # 1. get a list of all task models
     # and set it to the @tasks variable
 
@@ -16,6 +19,12 @@ class TaskController < ApplicationController
     erb :create
   end
   post '/create' do
+    @task = Task.new
+    @task.name = params[:name]
+    @task.description = params[:desc]
+    @task.save
+    @tasks = Task.all
+
     # 2. Check the `params` hash and
     # the create view. Notice the keys
     # being passed in along with the values.
@@ -32,6 +41,10 @@ class TaskController < ApplicationController
 
   #update
   get '/update/:id' do
+    #  return Task.find(params[:id])
+     @task = Task.find(params[:id])
+
+
     # 3. We should be getting params[:id]
     # here. Let's find our model and return it.
     # Since we know the `id` of the model, we
@@ -43,10 +56,16 @@ class TaskController < ApplicationController
     erb :update
   end
   post '/update' do
+    @task = Task.find(params[:id])
+    @task.name = params[:name]
+    @task.description = params[:desc]
+    @task.save
+    @tasks = Task.all
+
     # 4. Just like create, we need to find our model.
     # Then update the attributes and save it!
     # Let's assing our model to the task.
-    # Shhh... we've used a *hidden* input on the :create
+    # Shhh... we've used a *hidden* input on the :update
     # view to hold the id. This is so users can't try
     # to edit it! Sneaky, sneaky.
 
@@ -57,6 +76,12 @@ class TaskController < ApplicationController
 
   #destroy
   get '/destroy/:id' do
+    @task = Task.find(params[:id])
+    # return Task.find(params[:id])
+
+    # @task.destroy
+    # @task.save
+ # Note: Do we need to save after destroy?
     # 5. We should be getting params[:id]
     # here. Let's find our model and return it.
     # Since we know the `id` of the model, we
@@ -67,6 +92,8 @@ class TaskController < ApplicationController
     erb :destroy
   end
   post '/destroy' do
+    @task = Task.find(params[:id])
+    @task.destroy
     # 6. We should be getting params[:id]
     # here. Let's find our model and return it.
     # Since we know the `id` of the model, we
